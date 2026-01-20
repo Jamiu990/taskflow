@@ -1,0 +1,21 @@
+services:
+  simple-jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: taskflow-jaeger
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    ports:
+      - "16686:16686"
+
+  simple-otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.143.0
+    container_name: taskflow-otel-collector
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+    volumes:
+      - ./otelcol-config.yml:/etc/otelcol/config.yml
+    command: ["--config=/etc/otelcol/config.yml"]
+    restart: unless-stopped
+    depends_on:
+      - simple-jaeger
