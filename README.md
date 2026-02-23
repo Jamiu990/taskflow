@@ -155,7 +155,7 @@ Activate virtual environment:
 Run with auto-instrumentation:
 
 ```
-opentelemetry-instrument python app.py
+python app.py
 ```
 
 Service runs on:
@@ -174,7 +174,7 @@ go run .
 
 Service runs on:
 
-* [http://localhost:8081](http://localhost:8081)
+* [http://localhost:8081/tasks](http://localhost:8081/tasks)
 
 ---
 
